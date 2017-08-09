@@ -7,14 +7,15 @@ const restrict = [
   authenticate('jwt'),
   restrictToAuthenticated(),
 ];
+const updateStudent = require('../../hooks/update-student');
 module.exports = {
   before: {
     all: [...restrict],
     find: [],
     get: [],
     create: [],
-    update: [],
-    patch: [],
+    update: [updateStudent()],
+    patch: [updateStudent()],
     remove: []
   },
 
