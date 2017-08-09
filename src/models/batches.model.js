@@ -14,7 +14,8 @@ module.exports = function (app) {
 
   const studentSchema = new Schema({
     firstName: { type: String, required: true },
-    LastName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    photo: { type: String, required: true },
     evaluations: [evaluationSchema],
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
@@ -22,8 +23,8 @@ module.exports = function (app) {
 
   const batches = new Schema({
     title: { type: String, required: true },
-    startDate: { type: Date, required: true },
-    endDate: { type: Date, required: true },
+    startDate: { type: Date, default: Date.now },
+    endDate: { type: Date, default: Date.now },
     students: [studentSchema],
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
