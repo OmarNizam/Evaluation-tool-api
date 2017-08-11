@@ -7,8 +7,9 @@ module.exports = function (app) {
   const { Schema } = mongooseClient;
 
   const evaluationSchema = new Schema({
+    total: { type: String },
+    evaluationDate: { type: Date, default: Date.now },
     color: { type: String, default: 'gray'},
-    total: {type: String },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
   });
