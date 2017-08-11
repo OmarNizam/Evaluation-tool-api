@@ -35,6 +35,7 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
             };
             return Promise.resolve(hook);
           }
+
           studentsEdit = students;
           studentsEdit = batch.students.filter(p => p._id.toString() !== hook.data._id.toString());
           hook.data = {
@@ -50,7 +51,7 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
         if (edit) {
           const student = batch.students.find(p => p._id.toString() === hook.data.id.toString());
           const isIncluded = student.evaluations.findIndex(p =>(new Date(p.evaluationDate).toDateString() === (new Date(hook.data.evaluationDate).toDateString())));
-
+          // this part don't allow the evaluation if it is already evaluated
           //If alredy included, remove from list and concat with new one.
           if (isIncluded >= 0) {
             student.evaluations = student.evaluations.filter(p =>(new Date(p.evaluationDate).toDateString() !== (new Date(hook.data.evaluationDate).toDateString())));
